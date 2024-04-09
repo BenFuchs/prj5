@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="calculator">
+        <input id="display" readonly>
+        <div class="button-container">
+            <button class="button" onclick="addDigit('1')">1</button>
+            <button class="button" onclick="addDigit('2')">2</button>
+            <button class="button" onclick="addDigit('3')">3</button>
+            <button class="button" onclick="addDigit('4')">4</button>
+            <button class="button" onclick="addDigit('5')">5</button>
+            <button class="button" onclick="addDigit('6')">6</button>
+            <button class="button" onclick="addDigit('7')">7</button>
+            <button class="button" onclick="addDigit('8')">8</button>
+            <button class="button" onclick="addDigit('9')">9</button>
+            <button class="button" onclick="addDigit('0')">0</button>
+            <button class="button" onclick="clearDisplay()">Clear</button>
+            <button class="button" onclick="oper('+')">+</button>
+            <button class="button" onclick="oper('-')">-</button>
+            <button class="button" onclick="oper('/')">/</button>
+            <button class="button" onclick="oper('*')">*</button>
+            <button class="button calc-button" onclick="calc()">Calculate</button>
+        </div>
+    </div>
+
+    <script>
+        var firstNumber = 0;
+        var chosenOper = '';
+        var clearFlag = false;
+
+        function addDigit(digit) {
+            if (display.value == 0 || clearFlag == true) {
+                display.value = '';
+                clearFlag = false;
+            }
+            display.value += digit;
+        }
+
+        function clearDisplay() {
+            display.value = 0;
+        }
+
+        function oper(operator) {
+            firstNumber = display.value;
+            chosenOper = operator;
+            display.value = '';
+        }
+
+        function calc() {
+            if (chosenOper == '+') {
+                display.value = +firstNumber + +display.value;
+                clearFlag = true;
+            }
+            if (chosenOper == '-') {
+                display.value = +firstNumber - +display.value;
+                clearFlag = true;
+            }
+            if (chosenOper == '/') {
+                display.value = +firstNumber / +display.value;
+                clearFlag = true;
+            }
+            if (chosenOper == '*') {
+                display.value = +firstNumber * +display.value;
+                clearFlag = true;
+            }
+        }
+    </script>
+</body>
+
+</html>
